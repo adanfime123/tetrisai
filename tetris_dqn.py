@@ -113,7 +113,8 @@ def train():
 
         epsilon = max(EPSILON_MIN, epsilon * EPSILON_DECAY)
         print(f"Episode {episode}, Reward: {episode_reward}, Epsilon: {epsilon:.3f}")
-    torch.save(policy_net.state_dict(), f"model_ep{episode}.pth")
+        if episode % 100 == 0:
+            torch.save(policy_net.state_dict(), f"model_ep{episode}.pth")
 
 if __name__ == "__main__":
     train()
